@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/GuoXiaoyang/tdd-by-example/issues"
   },
-  "homepage": "https://github.com/GuoXiaoyang/tdd-by-example#readme"
+  "homepage": "https://github.com/GuoXiaoyang/tdd-by-example#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
 }
