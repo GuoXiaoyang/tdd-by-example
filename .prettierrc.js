@@ -3,10 +3,12 @@ module.exports = {
   "semi": true,
   "singleQuote": true,
   "trailingComma": "all",
-  "bracketSpacing": false,
-  "jsxBracketSameLine": true,
-  "arrowParens": "avoid",
-  "insertPragma": true,
-  "tabWidth": 4,
-  "useTabs": false
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "insertPragma": false,
+  "tabWidth": 2,
+  "useTabs": false,
+  "arrowParents": "always",
+  "endOfLine": "lf"
 };
