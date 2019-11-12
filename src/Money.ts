@@ -3,7 +3,8 @@ export class Dollar {
   constructor(amount: number) {
     this.amount = amount;
   }
-  public times(multiplier: number): void {
-    this.amount = this.amount * multiplier;
+  public times(multiplier: number): Dollar {
+    const amount = this.amount * multiplier;
+    return new Dollar(amount);
   }
 }
