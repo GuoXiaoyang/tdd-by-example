@@ -2,8 +2,8 @@ import { Dollar } from '../src/Money';
 
 test('test dollar multiplication', () => {
   const fiveDollar = new Dollar(5);
-  const tenDollar = fiveDollar.times(2);
-  expect(tenDollar.amount).toEqual(10);
+  expect(fiveDollar.times(2).equal(new Dollar(10))).toBe(true);
+  expect(fiveDollar.times(3).equal(new Dollar(15))).toBe(true);
 });
 
 test('test dollar equality', () => {
