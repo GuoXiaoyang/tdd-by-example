@@ -3,8 +3,12 @@ export class Dollar {
   constructor(amount: number) {
     this.amount = amount;
   }
-  public times(multiplier: number): Dollar {
+  public times(multiplier: number) {
     const amount = this.amount * multiplier;
     return new Dollar(amount);
+  }
+
+  public equal(dollar: Dollar) {
+    return this.amount === dollar.amount;
   }
 }
