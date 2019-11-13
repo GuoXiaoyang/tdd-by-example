@@ -3,17 +3,11 @@
   "eslint.enable": true,
   "javascript.validate.enable": false,
   "editor.formatOnSave": false,
-  "prettier.arrowParens": "always",
-  "prettier.printWidth": 120,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
-  "prettier.endOfLine": "lf",
-  "prettier.tabWidth": 2,
   "[javascript]": {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": true
   },
   "[typescript]": {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": true
   },
-  "editor.tabSize": 2,
+  "editor.tabSize": 2
 }

@@ -1,35 +1,48 @@
-import { Dollar, Franc } from '../src/Money';
+import { Money } from '../src/Money';
+let fiveDollar: Money;
+let tenDollar: Money;
+let fiveFranc: Money;
+let tenFranc: Money;
 
-test('test money multiplication', () => {
-  const fiveDollar = new Dollar(5);
-  expect(fiveDollar.times(2).equal(new Dollar(10))).toBe(true);
-  expect(fiveDollar.times(3).equal(new Dollar(15))).toBe(true);
-  const fiveFranc = new Franc(5);
-  expect(fiveFranc.times(2).equal(new Franc(10))).toBe(true);
-  expect(fiveFranc.times(3).equal(new Franc(15))).toBe(true);
+beforeEach(() => {
+  fiveDollar = Money.dollar(5);
+  tenDollar = Money.dollar(10);
+  fiveFranc = Money.franc(5);
+  tenFranc = Money.franc(10);
 });
 
-test('test dollar equality', () => {
-  const fiveDollar = new Dollar(5);
-  const anotherFiveDollar = new Dollar(5);
-  const tenDollar = new Dollar(10);
-  expect(fiveDollar.equal(anotherFiveDollar)).toBe(true);
-  expect(fiveDollar.equal(tenDollar)).toBe(false);
+describe('test money multiplication', () => {
+  test('5$ * 2 = 10$ ', () => {
+    expect(fiveDollar.times(2).equal(tenDollar)).toBe(true);
+  });
+  test('5$ * 3 = 15$ ', () => {
+    expect(fiveDollar.times(3).equal(Money.dollar(15))).toBe(true);
+  });
+  test('5$ * 3 != 10$ ', () => {
+    expect(fiveDollar.times(3).equal(tenDollar)).toBe(false);
+  });
 });
 
-test('test franc equality', () => {
-  const fiveFranc = new Franc(5);
-  const anotherFiveFranc = new Franc(5);
-  const tenFranc = new Franc(10);
-  expect(fiveFranc.equal(anotherFiveFranc)).toBe(true);
-  expect(fiveFranc.equal(tenFranc)).toBe(false);
-});
+describe('test money equality', () => {
+  test('5$ = 5$', () => {
+    const anotherFiveDollar = Money.dollar(5);
+    expect(fiveDollar.equal(anotherFiveDollar)).toBe(true);
+  });
 
-test('test equality of different currency', () => {
-  const fiveDollar = new Dollar(5);
-  const tenDollar = new Dollar(10);
-  const fiveFranc = new Franc(5);
-  const tenFranc = new Franc(10);
-  expect(fiveDollar.equal(fiveFranc)).toBe(false);
-  expect(tenDollar.equal(tenFranc)).toBe(false);
+  test('5$ != 10$', () => {
+    expect(fiveDollar.equal(tenDollar)).toBe(false);
+  });
+
+  test('5₣ = 5₣', () => {
+    const anotherFiveFranc = Money.franc(5);
+    expect(fiveFranc.equal(anotherFiveFranc)).toBe(true);
+  });
+
+  test('5₣ != 10₣', () => {
+    expect(fiveFranc.equal(tenFranc)).toBe(false);
+  });
+
+  test('5$ != 5₣', () => {
+    expect(fiveDollar.equal(fiveFranc)).toBe(false);
+  });
 });

@@ -1,23 +1,23 @@
-class Money {
-  protected amount: number;
-  constructor(amount: number) {
+export class Money {
+  private amount: number;
+  private currency: string;
+  constructor(amount: number, currency: string) {
     this.amount = amount;
+    this.currency = currency;
   }
   public equal(money: Money) {
-    return money.amount === this.amount && money.constructor.name === this.constructor.name;
+    return money.amount === this.amount && money.currency === this.currency;
   }
-}
 
-export class Dollar extends Money {
   public times(multiplier: number) {
-    const amount = this.amount * multiplier;
-    return new Dollar(amount);
+    return new Money(this.amount * multiplier, this.currency);
   }
-}
 
-export class Franc extends Money {
-  public times(multiplier: number) {
-    const amount = this.amount * multiplier;
-    return new Franc(amount);
+  static dollar(amount: number) {
+    return new Money(amount, 'USD');
+  }
+
+  static franc(amount: number) {
+    return new Money(amount, 'CHF');
   }
 }
