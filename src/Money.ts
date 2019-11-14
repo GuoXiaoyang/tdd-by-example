@@ -1,4 +1,5 @@
 import { Currency } from './type';
+import { Bank } from './Bank';
 
 export class Money {
   private _amount: number;
@@ -8,11 +9,11 @@ export class Money {
     this._currency = currency;
   }
   public equal(money: Money) {
-    return money.amount() === this._amount && money.currency() === this._currency;
+    return money.amount() === this.amount() && money.currency() === this.currency();
   }
 
   public times(multiplier: number) {
-    return new Money(this._amount * multiplier, this._currency);
+    return new Money(this.amount() * multiplier, this.currency());
   }
 
   public amount() {
@@ -21,6 +22,11 @@ export class Money {
 
   public currency() {
     return this._currency;
+  }
+
+  public reduce(bank: Bank, to: Currency) {
+    const rate = bank.rate(this.currency(), to);
+    return new Money(this.amount() / rate, to);
   }
 
   static dollar(amount: number) {
