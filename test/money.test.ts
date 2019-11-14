@@ -46,3 +46,10 @@ describe('test money equality', () => {
     expect(fiveDollar.equal(fiveFranc)).toBe(false);
   });
 });
+
+// describe('test money reduce', () => {
+//   test('reduced 5$ = 5$', () => {});
+//   test('reduced 5₣ = 5₣', () => {});
+//   test('reduced 10₣ != 5$', () => {});
+//   test('reduced 10₣ = 5$', () => {});
+// });

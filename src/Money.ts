@@ -1,23 +1,33 @@
+import { Currency } from './type';
+
 export class Money {
-  private amount: number;
-  private currency: string;
-  constructor(amount: number, currency: string) {
-    this.amount = amount;
-    this.currency = currency;
+  private _amount: number;
+  private _currency: Currency;
+  constructor(amount: number, currency: Currency) {
+    this._amount = amount;
+    this._currency = currency;
   }
   public equal(money: Money) {
-    return money.amount === this.amount && money.currency === this.currency;
+    return money.amount() === this._amount && money.currency() === this._currency;
   }
 
   public times(multiplier: number) {
-    return new Money(this.amount * multiplier, this.currency);
+    return new Money(this._amount * multiplier, this._currency);
+  }
+
+  public amount() {
+    return this._amount;
+  }
+
+  public currency() {
+    return this._currency;
   }
 
   static dollar(amount: number) {
-    return new Money(amount, 'USD');
+    return new Money(amount, Currency.USD);
   }
 
   static franc(amount: number) {
-    return new Money(amount, 'CHF');
+    return new Money(amount, Currency.CHF);
   }
 }
