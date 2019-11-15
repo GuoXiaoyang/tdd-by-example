@@ -1,6 +1,7 @@
 import { Money } from '../src/Money';
 import { Bank } from '../src/Bank';
 import { Currency } from '../src/type';
+import { Sum } from '../src/Sum';
 let fiveDollar: Money;
 let tenDollar: Money;
 let fiveFranc: Money;
@@ -48,8 +49,14 @@ describe('test money multiplication', () => {
   test('5$ * 3 != 10$ ', () => {
     expect(fiveDollar.times(3).equal(tenDollar)).toBe(false);
   });
-  test('(5$ + 10₣) * 3 = 30$', () => {});
-  test('(5$ + 10₣) * 2 = 40₣', () => {});
+  test('(5$ + 10₣) * 3 = 30$', () => {
+    const sum = new Sum(fiveDollar, tenFranc).times(3);
+    expect(bank.reduce(sum, Currency.USD).equal(Money.dollar(30))).toBe(true);
+  });
+  test('(5$ + 10₣) * 2 = 40₣', () => {
+    const sum = new Sum(fiveDollar, tenFranc).times(2);
+    expect(bank.reduce(sum, Currency.CHF).equal(Money.franc(40))).toBe(true);
+  });
 });
 
 describe('test money reduce', () => {
