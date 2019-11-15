@@ -16,18 +16,6 @@ beforeEach(() => {
   bank.addRates(Currency.CHF, Currency.USD, 2);
 });
 
-describe('test money multiplication', () => {
-  test('5$ * 2 = 10$ ', () => {
-    expect(fiveDollar.times(2).equal(tenDollar)).toBe(true);
-  });
-  test('5$ * 3 = 15$ ', () => {
-    expect(fiveDollar.times(3).equal(Money.dollar(15))).toBe(true);
-  });
-  test('5$ * 3 != 10$ ', () => {
-    expect(fiveDollar.times(3).equal(tenDollar)).toBe(false);
-  });
-});
-
 describe('test money equality', () => {
   test('5$ = 5$', () => {
     expect(fiveDollar.equal(fiveDollar)).toBe(true);
@@ -50,6 +38,20 @@ describe('test money equality', () => {
   });
 });
 
+describe('test money multiplication', () => {
+  test('5$ * 2 = 10$ ', () => {
+    expect(fiveDollar.times(2).equal(tenDollar)).toBe(true);
+  });
+  test('5$ * 3 = 15$ ', () => {
+    expect(fiveDollar.times(3).equal(Money.dollar(15))).toBe(true);
+  });
+  test('5$ * 3 != 10$ ', () => {
+    expect(fiveDollar.times(3).equal(tenDollar)).toBe(false);
+  });
+  test('(5$ + 10₣) * 3 = 30$', () => {});
+  test('(5$ + 10₣) * 2 = 40₣', () => {});
+});
+
 describe('test money reduce', () => {
   test('reduced 5$ = 5$', () => {
     expect(bank.reduce(fiveDollar, Currency.USD).equal(fiveDollar)).toBe(true);
@@ -66,4 +68,14 @@ describe('test money reduce', () => {
   test('reduced 5$ = 10₣', () => {
     expect(bank.reduce(fiveDollar, Currency.CHF).equal(tenFranc)).toBe(true);
   });
+});
+
+describe('test money plus', () => {
+  test('5$ + 5$ = 10$', () => {});
+  test('5$ + 5$ != 8$', () => {});
+  test('5₣ + 5₣ = 10₣', () => {});
+  test('5$ + 10₣ = 10$', () => {});
+  test('5$ + 10₣ = 20₣', () => {});
+  test('(5$ + 10₣) + 5$ = 15$', () => {});
+  test('(5$ + 10₣) + (10$ + 15₣) = 55$', () => {});
 });
