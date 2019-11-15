@@ -92,7 +92,11 @@ describe('test money plus', () => {
     expect(bank.reduce(sum, Currency.CHF).equal(Money.franc(20))).toBe(true);
   });
   test('(5$ + 10₣) + 5$ = 15$', () => {
-    // const sum1 = fiveDollar.plus(tenFranc);
+    const sum = fiveDollar.plus(tenFranc).plus(fiveDollar);
+    expect(bank.reduce(sum, Currency.USD).equal(Money.dollar(15))).toBe(true);
   });
-  test('(5$ + 10₣) + (10$ + 15₣) = 55$', () => {});
+  test('(5$ + 10₣) + (10$ + 15₣) = 55₣', () => {
+    const sum = fiveDollar.plus(tenFranc).plus(tenDollar.plus(Money.franc(15)));
+    expect(bank.reduce(sum, Currency.CHF).equal(Money.franc(55))).toBe(true);
+  });
 });

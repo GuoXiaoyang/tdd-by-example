@@ -14,4 +14,8 @@ export class Sum {
     const amount = bank.reduce(this.augend, to).amount() + bank.reduce(this.addend, to).amount();
     return new Money(amount, to);
   }
+
+  public plus(addend: TAddend) {
+    return new Sum(this, addend);
+  }
 }
