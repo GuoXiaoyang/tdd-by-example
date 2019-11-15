@@ -1,5 +1,6 @@
 import { Currency } from './type';
 import { Bank } from './Bank';
+import { Sum } from './Sum';
 
 export class Money {
   private _amount: number;
@@ -27,6 +28,10 @@ export class Money {
   public reduce(bank: Bank, to: Currency) {
     const rate = bank.rate(this.currency(), to);
     return new Money(this.amount() / rate, to);
+  }
+
+  public plus(money: Money) {
+    return new Sum(this, money);
   }
 
   static dollar(amount: number) {

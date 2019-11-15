@@ -11,6 +11,7 @@ export class Sum {
   }
 
   public reduce(bank: Bank, to: Currency): Money {
-    return Money.dollar(1);
+    const amount = bank.reduce(this.augend, to).amount() + bank.reduce(this.addend, to).amount();
+    return new Money(amount, to);
   }
 }
